@@ -1,0 +1,15 @@
+[package]
+name = "browser-history-rofi"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rofi-mode = { path = "../rofi-mode.rs/" }
+browser-history = { path = "../browser-history/" }
+env_logger = "0.10.0"
+log = "0.4.17"
+# rofi-mode = { git = "https://github.com/JohnJohnstone/rofi-mode.rs" }
+# browser-history = { git = "https://github.com/JohnJohnstone/browser-history-rs" }
+
+[lib]
+crate-type = ["cdylib"]
