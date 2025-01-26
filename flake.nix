@@ -56,6 +56,8 @@
 
                 RUSTFLAGS="--cfg rofi_next";
                 nativeBuildInputs = with pkgs; [
+                    sqlite
+
                     pkg-config 
                     glib
                     cairo
