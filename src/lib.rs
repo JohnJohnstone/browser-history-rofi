@@ -2,16 +2,16 @@ use std::process::Command;
 
 use log::info;
 
-use browser_history::{get_history, History};
-
+use browser_history::{get_history, History, Browser};
 
 rofi_mode::export_mode!(HistoryMode);
 
-struct HistoryMode {
+struct HistoryMode<'rofi> {
     entries: Vec<History>,
+    api: rofi_mode::Api<'rofi>,
 }
 
-impl HistoryMode {
+impl<'rofi> HistoryMode<'rofi> {
     fn get_entries() -> Vec<History> {
         get_history()
     }
@@ -33,10 +33,10 @@ impl HistoryMode {
     }
 }
 
-impl rofi_mode::Mode<'_> for HistoryMode {
+impl<'rofi> rofi_mode::Mode<'rofi> for HistoryMode<'rofi> {
     const NAME: &'static str = "browser_history\0";
 
-    fn init(_api: rofi_mode::Api<'_>) -> Result<Self, ()> {
+    fn init(api: rofi_mode::Api<'rofi>) -> Result<Self, ()> {
 
         env_logger::init();
 
@@ -46,6 +46,7 @@ impl rofi_mode::Mode<'_> for HistoryMode {
 
         Ok(HistoryMode {
             entries,
+            api,
         })
     }
 
@@ -87,8 +88,14 @@ impl rofi_mode::Mode<'_> for HistoryMode {
         rofi_mode::Attributes::new()
     }
 
-    fn entry_icon(&mut self, _line: usize, _height: u32) -> Option<rofi_mode::cairo::Surface> {
-        None
+    fn entry_icon(&mut self, line: usize, height: u32) -> Option<rofi_mode::cairo::Surface> {
+        let browser = &self.entries[line].browser;
+
+        match browser {
+            Browser::Firefox  => self.api.query_icon("firefox", height).wait(&mut self.api),
+            Browser::Qutebrowser  => self.api.query_icon("qutebrowser", height).wait(&mut self.api),
+            _ => None,
+        }
     }
 
     fn completed(&self, line: usize) -> rofi_mode::String {
