@@ -91,7 +91,7 @@ cargo build --release
                     # ls -lah
                     # echo "ls target/release/"
                     # ls -lah target/release/
-                    cp target/release/libbrowserhistory_rofi.so $out/lib/rofi/libbrowserhistory_rofi.so
+                    cp target/release/libbrowser_history_rofi.so $out/lib/rofi/libbrowser_history_rofi.so
                     '';
                     };
              }
