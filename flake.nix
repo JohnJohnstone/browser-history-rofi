@@ -75,7 +75,7 @@
                 cargoLock = {
                     lockFile = ./Cargo.lock;
                     outputHashes = {
-                        "browser-history-0.1.0" = "sha256-oCy1YowYlnCW3wtuXNCwVN9Av0IqH2L6ObNm46kIfT0=";
+                        "browser-history-0.1.0" = "sha256-N3SB60trLAdERpk94AVorX9t/K/SIqKtSzuxXqg9kSQ=";
                     };
                 };
                 buildPhase = ''

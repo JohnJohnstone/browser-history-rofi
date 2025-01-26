@@ -82,7 +82,7 @@ checksum = "8f68f53c83ab957f72c32642f3868eec03eb974d1fb82e453128456482613d36"
 [[package]]
 name = "browser-history"
 version = "0.1.0"
-source = "git+https://github.com/JohnJohnstone/browser-history-rs#a75db8688f5937cadc47bb5afab53afbcc29cb89"
+source = "git+https://github.com/JohnJohnstone/browser-history-rs#965900b984dd1a863ecaac6bef98f161d3c018e8"
 dependencies = [
  "chrono",
  "log",
